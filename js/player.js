@@ -1,4 +1,4 @@
-﻿
+
 //? init elements
 const playPause = document.getElementById('playPause');
 const sliderValume = document.getElementById('sliderValume');
@@ -96,11 +96,11 @@ function loadSong(currentSongIndex, optionOrder = null, songItems = null, autopl
    }
 
    //? set current song's data to player 
-   playerSongImg.src = 'https://i.postimg.cc/KYVFWy3z/IMG-5720.jpg';
+   playerSongImg.src = songItems[currentSongItem].img.medium;
    playerSongTitle.innerHTML = `<p>${songItems[currentSongItem].title}</p>`;
    playerSongAuthor.innerHTML = `<p>${songItems[currentSongItem].author}</p>`;
 
-   fullscreenPlayerBackgroundSongImg.src = 'https://i.postimg.cc/KYVFWy3z/IMG-5720.jpg';
+   fullscreenPlayerBackgroundSongImg.src = songItems[currentSongItem].img.medium;
    fullscreenPlayerSongTitle.innerHTML = `<p>${songItems[currentSongItem].title}</p>`;
    fullscreenPlayerSongAuthor.innerHTML = `<p>${songItems[currentSongItem].author}</p>`;
 
@@ -179,12 +179,12 @@ function loadSong(currentSongIndex, optionOrder = null, songItems = null, autopl
             slides: (function () {
                let songImgs = [], songImg, songImgElem;
                for (let i = 0; i < songItems.length; i++) {
-                  const newImageUrl = 'https://i.postimg.cc/KYVFWy3z/IMG-5720.jpg';
+                  songImg = songItems[i].img.maxres ? songItems[i].img.maxres : songItems[i].img.medium;
                   songImgElem =
-                  ` <div class="fullscreen-player__song-img-adjust" id="${i + 1}">
-                      <img src="${newImageUrl}" id="fullscreen-player-song-image" alt="" loading="lazy">
-                      <div class="swiper-lazy-preloader"></div>
-                   </div>`
+                 ` <div class="fullscreen-player__song-img-adjust" id="${i + 1}">
+                     <img src="${songImg}" id="fullscreen-player-song-image" alt="" loading="lazy">
+                     <div class="swiper-lazy-preloader"></div>
+                  </div>`
                   songImgs.push(songImgElem);
                }
                return songImgs;
